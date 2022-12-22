@@ -6,7 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>2023カウントダウン by Ken_Cir</title>
     <link rel="stylesheet" href="reset.css" />
-    <link rel="stylesheet" href="style.css" />
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
+
+      #particles-js {
+        position: fixed;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        background-color: #80a0e0;
+      }
+
+      #wrapper {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+      }
+
+      h1 {
+        text-align: center;
+        padding-top: 23%;
+      }
+    </style>
   </head>
   <body>
     <div id="particles-js"></div>
@@ -14,6 +39,83 @@
       <h1>2023年まであと xxx</h1>
     </div>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="particles.js"></script>
+    <script>
+      particlesJS("particles-js", {
+        particles: {
+          number: {
+            value: 100,
+            density: {
+              enable: true,
+              value_area: 800,
+            },
+          },
+          color: {
+            value: "#ffffff",
+          },
+          shape: {
+            type: "image",
+            stroke: {
+              width: 3,
+              color: "#fff",
+            },
+            image: {
+              src: "snow.png",
+              width: 120,
+              height: 120,
+            },
+          },
+          opacity: {
+            value: 0.7,
+            random: false,
+            anim: {
+              enable: false,
+              speed: 1,
+              opacity_min: 0.1,
+              sync: false,
+            },
+          },
+          size: {
+            value: 5,
+            random: true,
+            anim: {
+              enable: false,
+              speed: 20,
+              size_min: 0.1,
+              sync: false,
+            },
+          },
+          line_linked: {
+            enable: false,
+          },
+          move: {
+            enable: true,
+            speed: 3,
+            direction: "none",
+            random: true, //動きはランダム
+            straight: false,
+            out_mode: "out",
+            bounce: false,
+            attract: {
+              enable: true,
+              rotateX: 300,
+              rotateY: 1200,
+            },
+          },
+        },
+        interactivity: {
+          detect_on: "canvas",
+          events: {
+            onhover: {
+              enable: false,
+            },
+            onclick: {
+              enable: false,
+            },
+            resize: true,
+          },
+        },
+        retina_detect: true,
+      });
+    </script>
   </body>
 </html>
