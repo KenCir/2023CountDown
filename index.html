@@ -5,8 +5,140 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>2023カウントダウン by Ken_Cir</title>
-    <link rel="stylesheet" href="reset.css" />
     <style>
+      /* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+      html,
+      body,
+      div,
+      span,
+      applet,
+      object,
+      iframe,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      p,
+      blockquote,
+      pre,
+      a,
+      abbr,
+      acronym,
+      address,
+      big,
+      cite,
+      code,
+      del,
+      dfn,
+      em,
+      img,
+      ins,
+      kbd,
+      q,
+      s,
+      samp,
+      small,
+      strike,
+      strong,
+      sub,
+      sup,
+      tt,
+      var,
+      b,
+      u,
+      i,
+      center,
+      dl,
+      dt,
+      dd,
+      ol,
+      ul,
+      li,
+      fieldset,
+      form,
+      label,
+      legend,
+      table,
+      caption,
+      tbody,
+      tfoot,
+      thead,
+      tr,
+      th,
+      td,
+      article,
+      aside,
+      canvas,
+      details,
+      embed,
+      figure,
+      figcaption,
+      footer,
+      header,
+      hgroup,
+      menu,
+      nav,
+      output,
+      ruby,
+      section,
+      summary,
+      time,
+      mark,
+      audio,
+      video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+      }
+      /* HTML5 display-role reset for older browsers */
+      article,
+      aside,
+      details,
+      figcaption,
+      figure,
+      footer,
+      header,
+      hgroup,
+      menu,
+      nav,
+      section {
+        display: block;
+      }
+      body {
+        line-height: 1;
+      }
+      ol,
+      ul {
+        list-style: none;
+      }
+      blockquote,
+      q {
+        quotes: none;
+      }
+      blockquote:before,
+      blockquote:after,
+      q:before,
+      q:after {
+        content: "";
+        content: none;
+      }
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+      }
+    </style>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap");
+
       html,
       body {
         height: 100%;
@@ -31,12 +163,45 @@
         text-align: center;
         padding-top: 23%;
       }
+
+      #clock {
+        font-family: "Share Tech Mono", monospace;
+        color: #daf6ff;
+        text-shadow: 0 0 20px #0aafe6;
+        line-height: 1.2;
+        text-align: center;
+        padding-top: 20%;
+      }
+
+      #clock-date {
+        font-size: 25px;
+      }
+
+      #clock-time {
+        font-size: 100px;
+      }
+
+      @media screen and (max-width: 500px) {
+        #clock {
+          padding-top: 60%;
+        }
+
+        #clock-date {
+          font-size: 5vw;
+        }
+        #clock-time {
+          font-size: 20vw;
+        }
+      }
     </style>
   </head>
   <body>
     <div id="particles-js"></div>
     <div id="wrapper">
-      <h1>2023年まであと xxx</h1>
+      <div id="clock">
+        <p id="clock-date"></p>
+        <p id="clock-time"></p>
+      </div>
     </div>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
@@ -116,6 +281,35 @@
         },
         retina_detect: true,
       });
+    </script>
+    <script>
+      const clock = () => {
+        const d = new Date();
+
+        let year = d.getFullYear();
+        let month = d.getMonth() + 1;
+        let date = d.getDate();
+        let dayNum = d.getDay();
+        const weekday = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+        let day = weekday[dayNum];
+        let hour = d.getHours();
+        let min = d.getMinutes();
+        let sec = d.getSeconds();
+
+        month = month < 10 ? "0" + month : month;
+        date = date < 10 ? "0" + date : date;
+        hour = hour < 10 ? "0" + hour : hour;
+        min = min < 10 ? "0" + min : min;
+        sec = sec < 10 ? "0" + sec : sec;
+
+        let today = `${year}.${month}.${date} ${day}`;
+        let time = `${hour}:${min}:${sec}`;
+
+        document.getElementById("clock-date").innerText = today;
+        document.getElementById("clock-time").innerText = time;
+      };
+
+      setInterval(clock, 500);
     </script>
   </body>
 </html>
