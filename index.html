@@ -295,21 +295,23 @@
         let hour = d.getHours();
         let min = d.getMinutes();
         let sec = d.getSeconds();
+        let mill = d.getMilliseconds();
 
         month = month < 10 ? "0" + month : month;
         date = date < 10 ? "0" + date : date;
         hour = hour < 10 ? "0" + hour : hour;
         min = min < 10 ? "0" + min : min;
         sec = sec < 10 ? "0" + sec : sec;
+        mill = mill < 10 ? "00" + mill : mill < 100 ? "0" + mill : mill;
 
         let today = `${year}.${month}.${date} ${day}`;
-        let time = `${hour}:${min}:${sec}`;
+        let time = `${hour}:${min}:${sec}:${mill}`;
 
         document.getElementById("clock-date").innerText = today;
         document.getElementById("clock-time").innerText = time;
       };
 
-      setInterval(clock, 500);
+      setInterval(clock, 1);
     </script>
   </body>
 </html>
